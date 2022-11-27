@@ -1,6 +1,6 @@
 public class Obstacle extends Entite{
     
-    public Obstacle(){super(0);}
+    public Obstacle(){super(3);}
     public Obstacle(int r){super(r);}
     public String toString(String background){
         String result = "";

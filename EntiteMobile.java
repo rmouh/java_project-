@@ -3,7 +3,7 @@ abstract class EntiteMobile extends Entite {
     protected String direction;
 
     public EntiteMobile(String s, String d){
-        super(0);
+        super(3);
         if( s.compareToIgnoreCase("personnage") == 0)
         {
                 type = "P";

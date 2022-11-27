@@ -1,7 +1,12 @@
 public class Sortie extends CaseTraversable{
 
-    public boolean estLibre(){
-        return ( (contenu.resistence == 0) ? true : false);}
-
+    //public boolean estLibre() { return true;}
+    public String toString(){
+        if (getContenu() == null) {
+            return "( )";
+        } else {
+            return (getContenu().toString("( )"));
+        }
+    }
     
 }

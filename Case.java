@@ -7,10 +7,11 @@ abstract class Case {
         lig = l;
         col = c;
     }
-
+    public abstract String toString();
     public abstract boolean estLibre();
     public abstract void vide();
     public abstract void entre (Entite e);
+    public abstract Entite getContenu();
 
 
 
