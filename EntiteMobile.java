@@ -32,3 +32,4 @@ abstract class EntiteMobile extends Entite {
     abstract void action(Case courante, Case cible);
     
 }
+

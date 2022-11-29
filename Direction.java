@@ -12,8 +12,8 @@ public enum Direction {
         switch (d) {
             case '^': case 'm': return Direction.nord;
             case 'v': case 'w': return Direction.sud;
-            case '>': case 'Â»': return Direction.est;
-            case '<': case 'Â«': return Direction.ouest;
+            case '>': case '»': return Direction.est;
+            case '<': case '«': return Direction.ouest;
         }
         return null;
     }

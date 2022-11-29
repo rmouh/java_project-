@@ -6,9 +6,18 @@ public class Terrain {
 
     private int hauteur, largeur;
     private Case[][] carte;
-    // public void print(){
-        
-    // }
+
+     public void print(){
+         for (int i = 0;i < hauteur; i++) {
+             for (int j = 0; j < largeur; j++)
+                 carte[i][j].toString();
+         }
+     }
+     public int get_H(){return this.hauteur;}
+     public int get_L(){return this.largeur;}
+     public Case[][] get_C(){return this.carte;}
+
+
 
     /* Initialisation d'un terrain Ã  partir de la description donnÃ©e par
        un fichier texte. Format du fichier de description :
@@ -42,7 +51,7 @@ public class Terrain {
                         case '^': case '>': case 'v': case '<':
                             cc = new CaseLibre(l, c, new Personnage(Direction.ofChar(ch)));
                             break;
-                        case 'm': case 'Â»': case 'w': case 'Â«':
+                        case 'm': case '»': case 'w': case '«':
                             cc = new CaseLibre(l, c, new Monstre(Direction.ofChar(ch)));
                             break;
                         default:  cc = null; break;
