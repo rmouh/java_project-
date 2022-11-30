@@ -30,5 +30,4 @@ abstract class EntiteMobile extends Entite {
     }
     abstract public String toString(String background);
     abstract void action(Case courante, Case cible);
-
 }

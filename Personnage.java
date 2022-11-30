@@ -1,5 +1,9 @@
 public class Personnage extends EntiteMobile {
-    
+
+    public Personnage(String s, String d) {
+        super(s, d);
+    }
+
     public String toString(String background)
     {
         String result = "";
