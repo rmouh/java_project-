@@ -25,7 +25,7 @@ public class FenetreJeu extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        /* Ã€ complÃ©ter */
+        /* à compléter */
     }
 
     public void ecranFinal(int n) {

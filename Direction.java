@@ -7,18 +7,18 @@ public enum Direction {
     est,
     ouest;
 
-    /* Lie le symbole reprÃ©sentant une crÃ©ature et sa direction */
+    /* Lie le symbole représentant une créature et sa direction */
     public static Direction ofChar(Character d) {
         switch (d) {
             case '^': case 'm': return Direction.nord;
             case 'v': case 'w': return Direction.sud;
-            case '>': case 'Â»': return Direction.est;
-            case '<': case 'Â«': return Direction.ouest;
+            case '>': case '»': return Direction.est;
+            case '<': case '«': return Direction.ouest;
         }
         return null;
     }
 
-    /* Tirage d'une direction alÃ©atoire */
+    /* Tirage d'une direction aléatoire */
     public static Direction random() {
         Random rnd = new Random();
         int r = rnd.nextInt(4);

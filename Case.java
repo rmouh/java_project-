@@ -11,10 +11,5 @@ abstract class Case {
     public abstract boolean estLibre();
     public abstract void vide();
     public abstract void entre (Entite e);
-    public abstract Entite getContenu();
-
-
-
-
-    
+    public abstract Entite getContenu(); 
 }

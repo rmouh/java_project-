@@ -1,6 +1,6 @@
 public class Sortie extends CaseTraversable{
 
-    //public boolean estLibre() { return true;}
+    public boolean estLibre() { return true;}
     public String toString(){
         if (getContenu() == null) {
             return "( )";
@@ -8,5 +8,4 @@ public class Sortie extends CaseTraversable{
             return (getContenu().toString("( )"));
         }
     }
-    
 }

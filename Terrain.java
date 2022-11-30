@@ -6,21 +6,28 @@ public class Terrain {
 
     private int hauteur, largeur;
     private Case[][] carte;
-    // public void print(){
-        
-    // }
 
-    /* Initialisation d'un terrain Ã  partir de la description donnÃ©e par
+    public void print(){
+        for (int i = 0;i < hauteur; i++) {
+            for (int j = 0; j < largeur; j++)
+                carte[i][j].toString();
+        }
+    }
+    public int get_H(){return this.hauteur;}
+    public int get_L(){return this.largeur;}
+    public Case[][] get_C(){return this.carte;}
+
+    /* Initialisation d'un terrain à partir de la description donnée par
        un fichier texte. Format du fichier de description :
-       - hauteur et largeur sur la premiÃ¨re ligne
-       - puis dessin du terrain (un caractÃ¨re == une case) avec le codage
+       - hauteur et largeur sur la première ligne
+       - puis dessin du terrain (un caractère == une case) avec le codage
          suivant
          '#' pour un mur
          ' ' (espace) pour une case libre
          'o' pour une sortie
          '@' pour une case libre contenant un obstacle
          '^', 'v', '>', '<' pour une case libre contenant un personnage
-         'm', 'w', 'Â»', 'Â«' pour une case libre contenant un monstre
+         'm', 'w', '»', '«' pour une case libre contenant un monstre
     */
     public Terrain(String file) {
         try {
@@ -42,7 +49,7 @@ public class Terrain {
                         case '^': case '>': case 'v': case '<':
                             cc = new CaseLibre(l, c, new Personnage(Direction.ofChar(ch)));
                             break;
-                        case 'm': case 'Â»': case 'w': case 'Â«':
+                        case 'm': case '»': case 'w': case '«':
                             cc = new CaseLibre(l, c, new Monstre(Direction.ofChar(ch)));
                             break;
                         default:  cc = null; break;
@@ -54,5 +61,4 @@ public class Terrain {
         }
         catch (IOException e) { e.printStackTrace(); }
     }
-
 }

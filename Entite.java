@@ -4,5 +4,4 @@ abstract class Entite {
     public Entite(int r) {resistence = r;}
 
     abstract public String toString(String background);
-
 }
