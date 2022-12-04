@@ -9,7 +9,7 @@ public class CaseIntraversable extends Case{
     public void entre(Entite e) {
     }
     @Override
-    // public Entite getContenu() {
-    //     return (null);
-    // }
+     public Entite getContenu() {
+        return (null);
+    }
 }

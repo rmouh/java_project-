@@ -7,17 +7,23 @@ public class Terrain {
     private int hauteur, largeur;
     private Case[][] carte;
 
-    public Terrain(int h, int l)
-    {
-            hauteur = h;
-            largeur = l;
-            carte = new Case[h][l];
-    }
+    // public Terrain(int h, int l)
+    // {
+    //         hauteur = h;
+    //         largeur = l;
+    //         carte = new Case[h][l];
+
+    // }
 
     public void print(){
         for (int i = 0;i < hauteur; i++) {
             for (int j = 0; j < largeur; j++)
-                carte[i][j].toString();
+            {
+                if (carte[i][j]!= null )
+                    System.out.print(carte[i][j].toString());
+        
+            }
+            System.out.println();
         }
     }
     public int get_H(){return this.hauteur;}
