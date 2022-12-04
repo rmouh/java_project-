@@ -1,35 +1,48 @@
 public class Monstre extends EntiteMobile {
     
-    public Monstre(String s, String d) {
-        super(s, d);
+    // public Monstre(String s, String d) {
+    //     super(s, d);
+    // }
+    public Monstre(Direction ofChar) {
+        super (ofChar);
     }
 
     public String toString(String background) {
-        String result = "";
-        result = background.charAt(0) + direction + background.charAt(2);
-        return (result);
+        if (direction.equals(Direction.nord))
+            return (background.charAt(0) + "^" + background.charAt(2));
+        else if (direction.equals(Direction.sud))
+            return (background.charAt(0) + "v" + background.charAt(2));
+        else if (direction.equals(Direction.est))
+            return (background.charAt(0) + ">" + background.charAt(2));
+        else
+            return (background.charAt(0) + "<" + background.charAt(2));
     }
+    // public String toString(String background) {
+    //     String result = "";
+    //     if (direction == )
+    //     result = background.charAt(0) + direction + background.charAt(2);
+    //     return (result);
+    // }
     public void direction_change()
     {
-        String new_d = this.direction;
+        Direction new_d = this.direction;
         while (this.direction == new_d)
         {
             double nb = Math.random();
             if (nb <0.25)
-                new_d = "m";
+                new_d = Direction.est;
             else if (nb < 0.5)
-                new_d = "w";
+                new_d = Direction.nord;
             else if (nb < 0.75)
-                new_d = "«";
+                new_d = Direction.ouest;
             else
-                new_d = "»";
+                new_d = Direction.sud;
         }
         this.direction = new_d;
     }
-
     public void action(Case courante, Case cible){
         
-        if (cible instanceof CaseIntraversable) || (cible instanceof Sortie){//le monstre peut pas avancer
+        if( (cible instanceof CaseIntraversable) || (cible instanceof Sortie)){//le monstre peut pas avancer
             direction_change();
         
         }else {// case traversable

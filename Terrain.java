@@ -7,6 +7,13 @@ public class Terrain {
     private int hauteur, largeur;
     private Case[][] carte;
 
+    public Terrain(int h, int l)
+    {
+            hauteur = h;
+            largeur = l;
+            carte = new Case[h][l];
+    }
+
     public void print(){
         for (int i = 0;i < hauteur; i++) {
             for (int j = 0; j < largeur; j++)

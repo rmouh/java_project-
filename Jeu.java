@@ -15,11 +15,11 @@ public class Jeu {
 
     public Case getCaseCible(EntiteMobile e, int i, int j){
         Case [][] c = terrain.get_C();
-        if (e.direction ==  "m" || e.direction ==  "^")
+        if (e.direction.equals(Direction.nord))
             return (c[i+1][j]);
-        else if (e.direction == "w" || e.direction ==  "v")
+        else if (e.direction.equals (Direction.sud))
             return (c[i-1][j]);
-        else if (e.direction == "«" || e.direction ==  "<")
+        else if (e.direction.equals(Direction.ouest))
             return (c[i][j-1]);
         else
             return (c[i][j+1]);
@@ -27,11 +27,21 @@ public class Jeu {
     }
     public void tour (){
         Case [][] c = terrain.get_C();
-        for (int i = 0;i < terrain.get_H(); i++) {
+        for (int i = 0; i < terrain.get_H(); i++) {
             for (int j = 0; j < terrain.get_L() ; j++){
-                Entite e =  c[i][j].getContenu();
-                if ((e instanceof Personnage) || (e instanceof Monstre))
-                    e.action(c[i][j],getCaseCible(e, i, j));
+                if (!(c[i][j].estLibre()))
+                {
+                    Entite e =  c[i][j].getContenu();
+                    if ((e instanceof Personnage))
+                    { 
+                        Personnage p = (Personnage)e;
+                        p.action(c[i][j], getCaseCible(p, i, j));
+                    }else if ((e instanceof Monstre))
+                    { 
+                        Monstre m = (Monstre)e;
+                        m.action(c[i][j], getCaseCible(m, i, j));
+                    }
+            }
             }
         }
     }
