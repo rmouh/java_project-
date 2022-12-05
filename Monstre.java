@@ -41,10 +41,9 @@ public class Monstre extends EntiteMobile {
         this.direction = new_d;
     }
     public void action(Case courante, Case cible){
-        
+
         if( (cible instanceof CaseIntraversable) || (cible instanceof Sortie)){//le monstre peut pas avancer
             direction_change();
-        
         }else {// case traversable
             if ((cible.getContenu() instanceof Obstacle) || (cible.getContenu() instanceof Personnage)) // !=null
             {// case cible occupée

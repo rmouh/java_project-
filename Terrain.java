@@ -26,8 +26,8 @@ public class Terrain {
             System.out.println();
         }
     }
-    public int get_H(){return this.hauteur;}
-    public int get_L(){return this.largeur;}
+    public int getHauteur(){return this.hauteur;}
+    public int getLargeur(){return this.largeur;}
     public Case[][] get_C(){return this.carte;}
 
     /* Initialisation d'un terrain à partir de la description donnée par

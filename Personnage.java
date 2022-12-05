@@ -62,7 +62,7 @@ public class Personnage extends EntiteMobile {
         if (cible instanceof Sortie){// personnage sort
             courante.vide();
             Jeu.counter--;
-            Jeu.sortis++;
+            //Jeu.sortis++;
         }else if (cible instanceof CaseTraversable){// case traversable
                 if (cible.getContenu() instanceof Obstacle) // cible = obstacle
                 {

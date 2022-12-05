@@ -7,6 +7,9 @@ abstract class Case {
         lig = l;
         col = c;
     }
+    public int getLig_Y(){return (lig);}
+    public int getCol_X(){return (col);}
+
     public abstract String toString();
     public abstract boolean estLibre();
     public abstract void vide();
