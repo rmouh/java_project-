@@ -23,38 +23,52 @@ public class Monstre extends EntiteMobile {
     //     result = background.charAt(0) + direction + background.charAt(2);
     //     return (result);
     // }
+//    public void direction_change()
+//    {
+//        Direction new_d = this.direction;
+//        while (this.direction.equals(new_d))
+//        {
+//            double nb = Math.random();
+//            if (nb <0.25)
+//                new_d = Direction.est;
+//            else if (nb < 0.5)
+//                new_d = Direction.nord;
+//            else if (nb < 0.75)
+//                new_d = Direction.ouest;
+//            else
+//                new_d = Direction.sud;
+//        }
+//        this.direction = new_d;
+//    }
     public void direction_change()
     {
-        Direction new_d = this.direction;
-        while (this.direction == new_d)
+        //Direction new_d = this.direction;
+        while (this.direction.equals(this.direction.random()))
         {
-            double nb = Math.random();
-            if (nb <0.25)
-                new_d = Direction.est;
-            else if (nb < 0.5)
-                new_d = Direction.nord;
-            else if (nb < 0.75)
-                new_d = Direction.ouest;
-            else
-                new_d = Direction.sud;
+            this.direction = this.direction.random();
         }
-        this.direction = new_d;
     }
     public void action(Case courante, Case cible){
 
         if( (cible instanceof CaseIntraversable) || (cible instanceof Sortie)){//le monstre peut pas avancer
             direction_change();
         }else {// case traversable
-            if ((cible.getContenu() instanceof Obstacle) || (cible.getContenu() instanceof Personnage)) // !=null
+            if ((cible.getContenu() instanceof Obstacle)) // !=null
             {// case cible occupée
                 cible.getContenu().resistence--;
-                if (cible.getContenu().resistence <= 0){
+                if (cible.getContenu().resistence <= 0) {
                     cible.vide();
-                    if ((cible.getContenu() instanceof Personnage)){}
-                        Jeu.counter--;
+                    cible.entre(courante.getContenu());
+                    courante.vide();
                 }
-
-            }else {// case libre
+                else
+                    direction_change();
+            }else if ((cible.getContenu() instanceof Personnage)) {
+                Terrain.counter--;
+                cible.vide();
+            }else if ((cible.getContenu() instanceof Monstre)) {// case libre
+                direction_change();
+            }else{
                 cible.entre(courante.getContenu());
                 courante.vide();
             }

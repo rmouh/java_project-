@@ -6,6 +6,8 @@ public class Terrain {
 
     private int hauteur, largeur;
     private Case[][] carte;
+    protected static int counter;
+
 
     // public Terrain(int h, int l)
     // {
@@ -47,6 +49,7 @@ public class Terrain {
             Scanner sc = new Scanner(new FileInputStream(file));
             this.hauteur = sc.nextInt();
             this.largeur = sc.nextInt();
+            this.counter = 0;
             sc.nextLine();
             this.carte = new Case[hauteur][largeur];
             for (int l=0; l<hauteur; l++) {
@@ -61,6 +64,7 @@ public class Terrain {
                         case '@': cc = new CaseLibre(l, c, new Obstacle()); break;
                         case '^': case '>': case 'v': case '<':
                             cc = new CaseLibre(l, c, new Personnage(Direction.ofChar(ch)));
+                            counter++;
                             break;
                         case 'm': case '»': case 'w': case '«':
                             cc = new CaseLibre(l, c, new Monstre(Direction.ofChar(ch)));

@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Jeu {
-    static int counter;
+//    static int counter;
     Terrain terrain;
     int sortis;
 
@@ -10,19 +10,31 @@ public class Jeu {
     public Jeu(String f) {
         this.terrain = new Terrain(f);
         this.sortis = 0;
-        this.counter = 5;
+        //this.counter = 100;
     }
 
     public Case getCaseCible(EntiteMobile e, int i, int j) {
         Case[][] c = terrain.get_C();
-        if (e.direction.equals(Direction.nord))
-            return (c[i + 1][j]);
-        else if (e.direction.equals(Direction.sud))
+        if (e.direction.equals(Direction.nord)) {
+            if (i == 0)
+                return (c[i + 1][j]);
             return (c[i - 1][j]);
-        else if (e.direction.equals(Direction.ouest))
+        }
+        else if (e.direction.equals(Direction.sud)) {
+            if (i == terrain.getHauteur())
+                return (c[i - 1][j]);
+            return (c[i + 1][j]);
+        }
+        else if (e.direction.equals(Direction.ouest)) {
+            if( j == 0)
+                return (c[i][j + 1]);
             return (c[i][j - 1]);
-        else
+        }
+        else {
+            if(j == terrain.getLargeur())
+                return (c[i][j - 1]);
             return (c[i][j + 1]);
+        }
 
     }
 
@@ -54,7 +66,7 @@ public class Jeu {
     }
 
     public Boolean partieFinie() {
-        return (counter == 0);
+        return (Terrain.counter == 0);
     }
 
 //    public static void main(String[] args) {
