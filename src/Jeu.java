@@ -68,7 +68,7 @@ public class Jeu {
     }
 
     public Boolean partieFinie() {
-        return (Terrain.counter == 0);
+        return ((Terrain.counter == 0) || (Joueur.en_vie == false));
     }
 
 //    public static void main(String[] args) {

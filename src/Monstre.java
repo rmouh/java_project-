@@ -59,6 +59,10 @@ public class Monstre extends EntiteMobile {
                 if (cible.getContenu().resistence <= 0) {
                     if ((cible.getContenu() instanceof Personnage))
                         Terrain.counter--;
+                    else if ((cible.getContenu() instanceof Joueur)) {
+                        Terrain.counter = Terrain.counter/2;
+                        Joueur.en_vie = false;
+                    }
                     cible.vide();
                     cible.entre(courante.getContenu());
                     courante.vide();

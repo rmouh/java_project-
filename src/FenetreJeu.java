@@ -77,17 +77,35 @@ class FenetreJeu extends JPanel implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        // laisser vide je crois
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        int key = e.getKeyCode();
+        switch (key) {//faut les coordonnées de la case où est le berger pour la suite mais jsp comment les avoir
+            case KeyEvent.VK_UP :
+                // action vers le haut
+                break;
+            case KeyEvent.VK_DOWN :
+                // action vers le bas
+                break;
+            case KeyEvent.VK_RIGHT :
+                // action vers la droite
+                break;
+            case KeyEvent.VK_LEFT :
+                // action vers la gauche
+                break;
+            case KeyEvent.VK_SPACE :
+                // si le berger est sur la sortie, il sort
+                // ne pas oublier de mettre en_vie = false si il sort
+                break;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        // laisser vide je crois
     }
 //    public static void main(String[] args) {
 //        Jeu j = new Jeu("laby1.txt");
