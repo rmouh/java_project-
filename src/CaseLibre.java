@@ -5,6 +5,10 @@ public class CaseLibre extends CaseTraversable{
         super (l, c);
         contenu = o;
     }
+    public CaseLibre(int l, int c, Joueur j){
+        super (l, c);
+        contenu = j;
+    }
 //    public CaseLibre(int l, int c, Personnage p){
 //        super (l, c);
 //        contenu = p;
@@ -18,7 +22,12 @@ public class CaseLibre extends CaseTraversable{
         contenu = e;
     }
     //public boolean estLibre(){return ( (contenu.resistence == 0) ? true : false);}
-    public boolean estLibre(){return (true);}
+    public boolean estLibre() {
+        if (contenu!= null)
+            return (false);
+        else
+            return(true);
+    }
     public String toString(){
         if (getContenu() == null) {
             return "   ";

@@ -53,20 +53,18 @@ public class Monstre extends EntiteMobile {
         if( (cible instanceof CaseIntraversable) || (cible instanceof Sortie)){//le monstre peut pas avancer
             direction_change();
         }else {// case traversable
-            if ((cible.getContenu() instanceof Obstacle)) // !=null
+            if ((cible.getContenu() instanceof Obstacle) || (cible.getContenu() instanceof Personnage) || (cible.getContenu() instanceof Joueur)) // !=null
             {// case cible occupée
                 cible.getContenu().resistence--;
                 if (cible.getContenu().resistence <= 0) {
+                    if ((cible.getContenu() instanceof Personnage))
+                        Terrain.counter--;
                     cible.vide();
                     cible.entre(courante.getContenu());
                     courante.vide();
-                }
-                else
+                } else
                     direction_change();
-            }else if ((cible.getContenu() instanceof Personnage)) {
-                Terrain.counter--;
-                cible.vide();
-            }else if ((cible.getContenu() instanceof Monstre)) {// case libre
+            }else if ((cible.getContenu() instanceof Monstre)) {// case monstre
                 direction_change();
             }else{
                 cible.entre(courante.getContenu());

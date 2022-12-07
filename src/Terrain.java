@@ -62,6 +62,7 @@ public class Terrain {
                         case ' ': cc = new CaseLibre(l, c); break;
                         case 'o': cc = new Sortie(l, c); break;
                         case '@': cc = new CaseLibre(l, c, new Obstacle()); break;
+                        case 'H': cc = new CaseLibre(l, c, new Joueur()); break;
                         case '^': case '>': case 'v': case '<':
                             cc = new CaseLibre(l, c, new Personnage(Direction.ofChar(ch)));
                             counter++;

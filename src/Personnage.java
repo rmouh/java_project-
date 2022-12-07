@@ -69,7 +69,7 @@ public class Personnage extends EntiteMobile {
                 direction_change();
                 cible.entre(courante.getContenu());
                 courante.vide();
-            }else if (cible.getContenu() instanceof Personnage) { // cible = monstre
+            }else if (cible.getContenu() instanceof Personnage || cible.getContenu() instanceof Joueur) { // cible = monstre
                     direction_change();
             } else {//avance le personnage
             cible.entre(courante.getContenu());

@@ -5,6 +5,7 @@ public class Donjon {
         int tempo = 100;
         Jeu jeu = new Jeu("laby2.txt");
         FenetreJeu graphic = new FenetreJeu(jeu.terrain);
+        graphic.addKeyListener(graphic);
         Timer timer = new Timer(tempo, e -> {
             jeu.tour();
             graphic.repaint();

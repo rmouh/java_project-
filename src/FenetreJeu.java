@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-class FenetreJeu extends JPanel {
+class FenetreJeu extends JPanel implements KeyListener{
     private Terrain terrain;
     private int tailleCase = 24;
     private int hauteur, largeur;
@@ -20,6 +21,7 @@ class FenetreJeu extends JPanel {
         this.frame = frame;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(this);
+//        frame.addKeyListener ();
         frame.pack();
         frame.setVisible(true);
     }
@@ -48,6 +50,10 @@ class FenetreJeu extends JPanel {
                             Color color = g.getColor();
                             g.setColor(Color.RED);
                             g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
+                        } else if ((Entite) c[i][j].getContenu() instanceof Joueur) {
+                            Color color = g.getColor();
+                            g.setColor(Color.PINK);
+                            g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
                         }
                     }
                 }else if (c[i][j] instanceof CaseIntraversable) {
@@ -67,6 +73,21 @@ class FenetreJeu extends JPanel {
         label.setSize(this.getSize());
         frame.getContentPane().add(label);
         frame.repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 //    public static void main(String[] args) {
 //        Jeu j = new Jeu("laby1.txt");

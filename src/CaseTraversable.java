@@ -11,7 +11,7 @@ class CaseTraversable extends Case {
     public void vide(){ this.contenu = null;}
     public void entre(Entite e){ this.contenu = e;}
     public String toString(){return (contenu.toString());}
-    //public boolean estLibre() { return ( (contenu == null) ? true : false);}
+//    public boolean estLibre() { return ( (contenu == null) ? true : false);}
     public boolean estLibre() {
         if (contenu!= null)
             return (false);

@@ -16,23 +16,23 @@ public class Jeu {
     public Case getCaseCible(EntiteMobile e, int i, int j) {
         Case[][] c = terrain.get_C();
         if (e.direction.equals(Direction.nord)) {
-            if (i == 0)
-                return (c[i + 1][j]);
+//            if (i == 0)
+//                return (c[i + 1][j]);
             return (c[i - 1][j]);
         }
         else if (e.direction.equals(Direction.sud)) {
-            if (i == terrain.getHauteur())
-                return (c[i - 1][j]);
+//            if (i == terrain.getHauteur())
+//                return (c[i - 1][j]);
             return (c[i + 1][j]);
         }
         else if (e.direction.equals(Direction.ouest)) {
-            if( j == 0)
-                return (c[i][j + 1]);
+//            if( j == 0)
+//                return (c[i][j + 1]);
             return (c[i][j - 1]);
         }
         else {
-            if(j == terrain.getLargeur())
-                return (c[i][j - 1]);
+//            if(j == terrain.getLargeur())
+//                return (c[i][j - 1]);
             return (c[i][j + 1]);
         }
 
@@ -47,7 +47,7 @@ public class Jeu {
                 if (c[i][j] instanceof CaseTraversable) {
                     //System.out.printf("true");
 
-                    if ((c[i][j].estLibre())) {
+                    if (!(c[i][j].estLibre())) {
                         //System.out.printf("true");
                         //if (c[i][j] instanceof C)
                         Entite e = c[i][j].getContenu();
@@ -58,6 +58,8 @@ public class Jeu {
                         } else if ((e instanceof Monstre)) {
                             Monstre m = (Monstre) e;
                             m.action(c[i][j], getCaseCible(m, i, j));
+//                        }else if ((e instanceof Joueur)){
+////                            e.curseur();
                         }
                     }
                 }
