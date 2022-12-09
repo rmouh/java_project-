@@ -27,6 +27,7 @@ class FenetreJeu extends JPanel implements KeyListener{
     }
 
     public void paintComponent(Graphics g) {
+        //System.out.println("ytrue");
         super.paintComponent(g);
         Case [][] c = terrain.get_C();
         for (int i = 0; i < terrain.getHauteur(); i++) {
@@ -42,6 +43,10 @@ class FenetreJeu extends JPanel implements KeyListener{
                             Color color = g.getColor();
                             g.setColor(Color.DARK_GRAY);
                             g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
+                        } else if ((Entite) c[i][j].getContenu() instanceof Joueur) {
+                            Color color = g.getColor();
+                            g.setColor(Color.PINK);
+                            g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
                         } else if ((EntiteMobile) c[i][j].getContenu() instanceof Personnage) {
                             Color color = g.getColor();
                             g.setColor(Color.GREEN);
@@ -49,10 +54,6 @@ class FenetreJeu extends JPanel implements KeyListener{
                         } else if ((EntiteMobile) c[i][j].getContenu() instanceof Monstre) {
                             Color color = g.getColor();
                             g.setColor(Color.RED);
-                            g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
-                        } else if ((Entite) c[i][j].getContenu() instanceof Joueur) {
-                            Color color = g.getColor();
-                            g.setColor(Color.PINK);
                             g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
                         }
                     }
@@ -80,27 +81,38 @@ class FenetreJeu extends JPanel implements KeyListener{
         // laisser vide je crois
     }
 
+
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("ytrue");
         int key = e.getKeyCode();
+        boolean moved;
+        Joueur j = (Joueur) terrain.J_case.getContenu();
         switch (key) {//faut les coordonnées de la case où est le berger pour la suite mais jsp comment les avoir
             case KeyEvent.VK_UP :
-                // action vers le haut
+                moved = j.action(terrain.J_case, terrain.get_C()[terrain.J_case.getLig_Y() - 1][terrain.J_case.getCol_X()]);
+                if(moved){terrain.J_case = terrain.get_C()[terrain.J_case.getLig_Y() - 1][terrain.J_case.getCol_X()];break;}
                 break;
             case KeyEvent.VK_DOWN :
-                // action vers le bas
+                moved = j.action(terrain.J_case, terrain.get_C()[terrain.J_case.getLig_Y() + 1][terrain.J_case.getCol_X()]);
+                if(moved){terrain.J_case = terrain.get_C()[terrain.J_case.getLig_Y() + 1][terrain.J_case.getCol_X()];break;}
                 break;
             case KeyEvent.VK_RIGHT :
-                // action vers la droite
+                moved = j.action(terrain.J_case, terrain.get_C()[terrain.J_case.getLig_Y()][terrain.J_case.getCol_X() + 1]);
+                if(moved){terrain.J_case = terrain.get_C()[terrain.J_case.getLig_Y()][terrain.J_case.getCol_X() + 1];break;}
                 break;
             case KeyEvent.VK_LEFT :
-                // action vers la gauche
+                moved = j.action(terrain.J_case, terrain.get_C()[terrain.J_case.getLig_Y()][terrain.J_case.getCol_X() - 1]);
+                if(moved){terrain.J_case = terrain.get_C()[terrain.J_case.getLig_Y()][terrain.J_case.getCol_X() - 1];break;}
                 break;
             case KeyEvent.VK_SPACE :
+                terrain.get_C()[terrain.J_case.getLig_Y()][terrain.J_case.getCol_X()] = null;
+                terrain.J_case = null;
+                j.en_vie = false;
                 // si le berger est sur la sortie, il sort
                 // ne pas oublier de mettre en_vie = false si il sort
                 break;
-        }
+        }this.repaint(terrain.J_case.getCol_X() * tailleCase, terrain.J_case.getLig_Y() * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
     }
 
     @Override

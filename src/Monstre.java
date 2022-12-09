@@ -56,18 +56,18 @@ public class Monstre extends EntiteMobile {
             if ((cible.getContenu() instanceof Obstacle) || (cible.getContenu() instanceof Personnage) || (cible.getContenu() instanceof Joueur)) // !=null
             {// case cible occupée
                 cible.getContenu().resistence--;
-                if (cible.getContenu().resistence <= 0) {
+                if (cible.getContenu().resistence > 0) {direction_change();}
+                else {
                     if ((cible.getContenu() instanceof Personnage))
                         Terrain.counter--;
                     else if ((cible.getContenu() instanceof Joueur)) {
-                        Terrain.counter = Terrain.counter/2;
+                        //Terrain.counter = Terrain.counter/2;
                         Joueur.en_vie = false;
-                    }
+                    }else{}
                     cible.vide();
                     cible.entre(courante.getContenu());
                     courante.vide();
-                } else
-                    direction_change();
+                }
             }else if ((cible.getContenu() instanceof Monstre)) {// case monstre
                 direction_change();
             }else{

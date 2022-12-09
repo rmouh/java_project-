@@ -1,6 +1,6 @@
 public class Joueur extends Entite{
 
-    protected boolean en_vie;
+    protected static boolean en_vie;
 
     public Joueur(){
         super(3);
@@ -9,10 +9,13 @@ public class Joueur extends Entite{
     public String toString(String background){
         return (background.charAt(0) + "H" + background.charAt(2));
     }
-    public void action(Case courante, Case cible){
+    public boolean action(Case courante, Case cible){
         if (cible instanceof CaseLibre) {
             cible.entre(courante.getContenu());
             courante.vide();
+            return (true);
         }
+        return (false);
     }
+
 }

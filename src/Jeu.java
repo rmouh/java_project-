@@ -71,14 +71,15 @@ public class Jeu {
         return ((Terrain.counter == 0) || (Joueur.en_vie == false));
     }
 
-//    public static void main(String[] args) {
-//        Jeu j = new Jeu("laby1.txt");
-//        while (counter > 0) {
-//            j.terrain.print();
-//            j.tour();
-//            j.terrain.print();
-//        }
-//    }
+    public static void main(String[] args) {
+        int d = 10;
+        Jeu j = new Jeu("laby2.txt");
+        while (d-- > 0) {
+            j.terrain.print();
+            j.tour();
+            j.terrain.print();
+        }
+    }
 }
 //    public static void main(String[] args) {
 //         Jeu j = new Jeu("laby1.txt");
