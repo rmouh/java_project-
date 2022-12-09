@@ -10,10 +10,17 @@ public class Joueur extends Entite{
         return (background.charAt(0) + "H" + background.charAt(2));
     }
     public boolean action(Case courante, Case cible){
+        if (cible instanceof Sortie) {// personnage sort
+                cible.entre(courante.getContenu());
+                courante.vide();
+                return (true);
+            }
         if (cible instanceof CaseLibre) {
-            cible.entre(courante.getContenu());
-            courante.vide();
-            return (true);
+            if((cible.estLibre())) {
+                cible.entre(courante.getContenu());
+                courante.vide();
+                return (true);
+            }
         }
         return (false);
     }
