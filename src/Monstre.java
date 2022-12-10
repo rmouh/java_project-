@@ -42,11 +42,12 @@ public class Monstre extends EntiteMobile {
 //    }
     public void direction_change()
     {
-        //Direction new_d = this.direction;
-        while (this.direction.equals(this.direction.random()))
+        Direction new_d = this.direction.random();
+        while (this.direction.equals(new_d))
         {
-            this.direction = this.direction.random();
+            new_d = new_d.random();
         }
+        this.direction = new_d;
     }
     public void action(Case courante, Case cible){
 
@@ -57,13 +58,14 @@ public class Monstre extends EntiteMobile {
             {// case cible occupée
                 cible.getContenu().resistence--;
                 if (cible.getContenu().resistence > 0) {direction_change();}
-                else {
+                else if (cible.getContenu().resistence == 0){
                     if ((cible.getContenu() instanceof Personnage))
                         Terrain.counter--;
-                    else if ((cible.getContenu() instanceof Joueur)) {
+                    else if ((cible.getContenu() instanceof Joueur)){
                         //Terrain.counter = Terrain.counter/2;
                         Joueur.en_vie = false;
-                    }else{}
+                    }
+                    else{}
                     cible.vide();
                     cible.entre(courante.getContenu());
                     courante.vide();

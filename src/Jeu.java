@@ -18,22 +18,22 @@ public class Jeu {
         if (e.direction.equals(Direction.nord)) {
 //            if (i == 0)
 //                return (c[i + 1][j]);
-            return (c[i - 1][j]);
+            return (terrain.get_C()[i - 1][j]);
         }
         else if (e.direction.equals(Direction.sud)) {
 //            if (i == terrain.getHauteur())
 //                return (c[i - 1][j]);
-            return (c[i + 1][j]);
+            return (terrain.get_C()[i + 1][j]);
         }
         else if (e.direction.equals(Direction.ouest)) {
 //            if( j == 0)
 //                return (c[i][j + 1]);
-            return (c[i][j - 1]);
+            return (terrain.get_C()[i][j - 1]);
         }
         else {
 //            if(j == terrain.getLargeur())
 //                return (c[i][j - 1]);
-            return (c[i][j + 1]);
+            return (terrain.get_C()[i][j + 1]);
         }
 
     }
@@ -58,6 +58,12 @@ public class Jeu {
                         } else if ((e instanceof Monstre)) {
                             Monstre m = (Monstre) e;
                             m.action(c[i][j], getCaseCible(m, i, j));
+                            if(getCaseCible(m, i, j).getContenu() instanceof Obstacle)
+                            {
+
+                                ((Obstacle) getCaseCible(m, i, j).getContenu()).set_Color(32);
+
+                            }
 //                        }else if ((e instanceof Joueur)){
 ////                            e.curseur();
                         }

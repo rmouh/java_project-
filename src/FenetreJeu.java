@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import static java.awt.event.KeyEvent.*;
 
 class FenetreJeu extends JPanel implements KeyListener{
+    public static int degree=32;
     private Terrain terrain;
     private int tailleCase = 24;
     private int hauteur, largeur;
@@ -30,40 +31,51 @@ class FenetreJeu extends JPanel implements KeyListener{
 
     public void paintComponent(Graphics g) {
         //System.out.println("ytrue");
+
         super.paintComponent(g);
         Case [][] c = terrain.get_C();
         for (int i = 0; i < terrain.getHauteur(); i++) {
+            //repaint();
             for (int j = 0; j < terrain.getLargeur() ; j++){
                 if (c[i][j] instanceof Sortie)
                 {
                     Color color = g.getColor();
-                    g.setColor(Color.BLUE);
+                    g.setColor(Color.CYAN);
                     g.fillRect(j*tailleCase, i*tailleCase, tailleCase , tailleCase);
                 }else if (c[i][j] instanceof CaseTraversable){
                     if (c[i][j] instanceof CaseLibre) {
                         if ((Entite) c[i][j].getContenu() instanceof Obstacle) {
-                            Color color = g.getColor();
-                            g.setColor(Color.DARK_GRAY);
+                            //Color color = g.getColor();
+
+                            g.setColor(new Color(((Obstacle)c[i][j].getContenu()).get_Color(), ((Obstacle)c[i][j].getContenu()).get_Color(), ((Obstacle)c[i][j].getContenu()).get_Color()));
+                            //((Obstacle) c[i][j].getContenu()).set_Color(32);
+                            //FenetreJeu.degree+=32;
                             g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
                         } else if ((Entite) c[i][j].getContenu() instanceof Joueur) {
-                            Color color = g.getColor();
+                            //Color color = g.getColor();
                             g.setColor(Color.PINK);
                             g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
                         } else if ((EntiteMobile) c[i][j].getContenu() instanceof Personnage) {
-                            Color color = g.getColor();
+                            //Color color = g.getColor();
                             g.setColor(Color.GREEN);
                             g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
+                            g.setColor(Color.BLACK);
+                            Draw_A_Point(((Personnage) c[i][j].getContenu()).direction, g, i, j);
+                            //this.repaint();
                         } else if ((EntiteMobile) c[i][j].getContenu() instanceof Monstre) {
-                            Color color = g.getColor();
+                            //Color color = g.getColor();
                             g.setColor(Color.RED);
                             g.fillOval(j * tailleCase, i * tailleCase, (int) (tailleCase * 0.9), (int) (tailleCase * 0.9));
+                            g.setColor(Color.BLACK);
+                            Draw_A_Point(((Monstre) c[i][j].getContenu()).direction, g, i, j);
+                            //this.repaint();
                         }
                     }
                 }else if (c[i][j] instanceof CaseIntraversable) {
                     Color color = g.getColor();
                     g.setColor(Color.BLACK);
                     g.fillRect(j*tailleCase, i*tailleCase, tailleCase , tailleCase);
-                }
+                }//this.repaint();
             }
         }
     }
@@ -77,7 +89,22 @@ class FenetreJeu extends JPanel implements KeyListener{
         frame.getContentPane().add(label);
         frame.repaint();
     }
-
+    public void Draw_A_Point(Direction d, Graphics g, int i, int j)
+    {
+        switch (d){
+            case nord ->
+                //g.setColor(Color.BLACK);
+                g.fillOval(j * tailleCase + (tailleCase/3), i * tailleCase + ((tailleCase/2)+2), (int) (tailleCase / 3), (int) (tailleCase /3));
+            case sud ->
+                    g.fillOval(j * tailleCase+ (tailleCase/4), i * tailleCase, (int) (tailleCase /3), (int) (tailleCase /3));
+            case ouest ->
+                //g.setColor(Color.BLACK);
+                g.fillOval(j * tailleCase, i * tailleCase+ (tailleCase/4), (int) (tailleCase /3), (int) (tailleCase /3));
+            case est ->
+                //g.setColor(Color.BLACK);
+                g.fillOval(j * tailleCase + ((tailleCase/2) + 3), i * tailleCase+ ((tailleCase/2)-4), (int) (tailleCase / 3), (int) (tailleCase /3));
+        }
+    }
     @Override
     public void keyTyped(KeyEvent e) {
         // laisser vide je crois
