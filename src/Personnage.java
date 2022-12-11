@@ -43,11 +43,10 @@ public class Personnage extends EntiteMobile {
     //     this.direction = new_d;
     // }
     public void direction_change() {
-        Direction new_d = this.direction.random();
-        while (this.direction.equals(new_d)) {
-            new_d = this.direction.random();
+        //Direction new_d = this.direction;
+        while (this.direction.equals(this.direction.random())) {
+            this.direction = this.direction.random();
         }
-        this.direction = new_d;
     }
 
     public void action(Case courante, Case cible) {
