@@ -8,6 +8,9 @@ abstract class EntiteMobile extends Entite {
             direction = d;
     }
     public Direction getDirection(){return (direction);}
+    public void setDirection(Direction d){
+        this.direction = d;
+    }
     abstract public String toString(String background);
     abstract void action(Case courante, Case cible);
     // public EntiteMobile(String s, String d){

@@ -16,27 +16,29 @@ public class Jeu {
     public Case getCaseCible(EntiteMobile e, int i, int j) {
         Case[][] c = terrain.get_C();
         if (e.direction.equals(Direction.nord)) {
-//            if (i == 0)
-//                return (c[i + 1][j]);
+            if (e instanceof Monstre )
+                System.out.println(i+"  " + " "+ j);
             return (terrain.get_C()[i - 1][j]);
         }
         else if (e.direction.equals(Direction.sud)) {
-//            if (i == terrain.getHauteur())
-//                return (c[i - 1][j]);
+//            if (i == terrain.getHauteur()-1)
+//                System.out.println(i+"  " + " "+ j);
             return (terrain.get_C()[i + 1][j]);
         }
         else if (e.direction.equals(Direction.ouest)) {
-//            if( j == 0)
-//                return (c[i][j + 1]);
+//            if( j == 1)
+//                System.out.println(i+"  " + " "+ j);
             return (terrain.get_C()[i][j - 1]);
         }
         else {
-//            if(j == terrain.getLargeur())
-//                return (c[i][j - 1]);
+//            if(j == terrain.getLargeur()-1)
+//                System.out.println(i+"  " + " "+ j);
             return (terrain.get_C()[i][j + 1]);
         }
 
     }
+
+
 
     public void tour() {
         Case[][] c = terrain.get_C();
