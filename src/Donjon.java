@@ -8,7 +8,7 @@ public class Donjon {
         //graphic.addKeyListener(graphic);
         Timer timer = new Timer(tempo, e -> {
             jeu.tour();
-            graphic.repaint();
+            graphic.repaint();//probleme de changement de direction 
             if (jeu.partieFinie()) { graphic.ecranFinal(jeu.sortis); }
         });
         timer.setInitialDelay(0);
